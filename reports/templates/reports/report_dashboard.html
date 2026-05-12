@@ -2,49 +2,126 @@
 
 {% block content %}
 
-<h1 class="mb-4">
+<div class="container">
 
-    Attendance Reports
+    <h1 class="mb-4">
 
-</h1>
+        Attendance Reports
 
-<a href="/reports/low-attendance/"
-   class="btn btn-danger mb-3">
+    </h1>
 
-   Low Attendance Report
+    <!-- Report Buttons -->
 
-</a>
+    <div class="mb-4">
 
-<table class="table table-bordered table-striped">
+        <a href="/reports/low-attendance/"
+           class="btn btn-danger">
 
-    <tr>
+           Low Attendance
 
-        <th>Student</th>
+        </a>
 
-        <th>Total Classes</th>
+        <a href="/reports/monthly-report/"
+           class="btn btn-primary">
 
-        <th>Present</th>
+           Monthly Report
 
-        <th>Attendance %</th>
+        </a>
 
-    </tr>
+        <a href="/reports/student-report/"
+           class="btn btn-warning">
 
-    {% for item in report_data %}
+           Student Search
 
-    <tr>
+        </a>
 
-        <td>{{ item.student.name }}</td>
+        <a href="/reports/date-range-report/"
+           class="btn btn-info text-white">
 
-        <td>{{ item.total }}</td>
+           Date Range Report
 
-        <td>{{ item.present }}</td>
+        </a>
 
-        <td>{{ item.percentage }}%</td>
+        <a href="/reports/export-pdf/"
+           class="btn btn-success">
 
-    </tr>
+           Download PDF
 
-    {% endfor %}
+        </a>
 
-</table>
+    </div>
+
+    <!-- Reports Table -->
+
+    <table class="table table-bordered table-striped shadow">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Student Name</th>
+
+                <th>Total Classes</th>
+
+                <th>Present</th>
+
+                <th>Attendance Percentage</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for item in report_data %}
+
+            <tr>
+
+                <td>
+
+                    {{ item.student.name }}
+
+                </td>
+
+                <td>
+
+                    {{ item.total }}
+
+                </td>
+
+                <td>
+
+                    {{ item.present }}
+
+                </td>
+
+                <td>
+
+                    {{ item.percentage }}%
+
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="4"
+                    class="text-center text-danger">
+
+                    No report data available.
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
 
 {% endblock %}

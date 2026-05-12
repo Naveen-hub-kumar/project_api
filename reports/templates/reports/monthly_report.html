@@ -1,0 +1,71 @@
+{% extends 'private_base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+
+    Monthly Attendance Report
+
+</h1>
+
+<form method="GET" class="mb-4">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <input
+                type="number"
+                name="month"
+                class="form-control"
+                placeholder="Enter Month (1-12)"
+            >
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+
+                Filter
+
+            </button>
+
+        </div>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered">
+
+    <tr>
+
+        <th>Student</th>
+
+        <th>Date</th>
+
+        <th>Status</th>
+
+    </tr>
+
+    {% for item in attendance %}
+
+    <tr>
+
+        <td>{{ item.student.name }}</td>
+
+        <td>{{ item.date }}</td>
+
+        <td>{{ item.status }}</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

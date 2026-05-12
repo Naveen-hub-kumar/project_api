@@ -38,6 +38,12 @@ def login_view(request):
 
         login(request, user)
 
+        next_url = request.GET.get('next')
+
+        if next_url:
+
+            return redirect(next_url)
+
         return redirect('dashboard')
 
     return render(
@@ -45,7 +51,6 @@ def login_view(request):
         'accounts/login.html',
         {'form': form}
     )
-
 # Logout
 def logout_view(request):
 

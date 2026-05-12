@@ -5,7 +5,7 @@ from .forms import AttendanceForm
 from students.models import Student
 
 # Dashboard
-@login_required(login_url='login')
+#@login_required(login_url='login')
 def dashboard(request):
 
     # Total Students
