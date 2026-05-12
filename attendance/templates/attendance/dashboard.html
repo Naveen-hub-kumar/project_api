@@ -1,0 +1,146 @@
+{% extends 'private_base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-5">
+        Attendance Dashboard
+    </h1>
+
+    <div class="row">
+
+        <!-- Total Students -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-primary text-white mb-3 shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>{{ total_students }}</h2>
+
+                    <p>Total Students</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Present Count -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-success text-white mb-3 shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>{{ present_count }}</h2>
+
+                    <p>Present Count</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Absent Count -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-danger text-white mb-3 shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>{{ absent_count }}</h2>
+
+                    <p>Absent Count</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Total Attendance -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-dark text-white mb-3 shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>{{ total_attendance }}</h2>
+
+                    <p>Total Attendance</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Attendance Percentage -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-info text-white mb-3 shadow">
+
+                <div class="card-body text-center">
+
+                    <h2>{{ attendance_percentage }}%</h2>
+
+                    <p>Attendance Percentage</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="mt-4">
+
+        <a href="/students/"
+           class="btn btn-primary">
+
+           Manage Students
+
+        </a>
+
+        <a href="/attendance/list/"
+           class="btn btn-success">
+
+           Attendance Records
+
+        </a>
+
+        <a href="/attendance/mark/"
+           class="btn btn-warning">
+
+           Mark Attendance
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

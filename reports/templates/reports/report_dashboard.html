@@ -1,0 +1,50 @@
+{% extends 'private_base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+
+    Attendance Reports
+
+</h1>
+
+<a href="/reports/low-attendance/"
+   class="btn btn-danger mb-3">
+
+   Low Attendance Report
+
+</a>
+
+<table class="table table-bordered table-striped">
+
+    <tr>
+
+        <th>Student</th>
+
+        <th>Total Classes</th>
+
+        <th>Present</th>
+
+        <th>Attendance %</th>
+
+    </tr>
+
+    {% for item in report_data %}
+
+    <tr>
+
+        <td>{{ item.student.name }}</td>
+
+        <td>{{ item.total }}</td>
+
+        <td>{{ item.present }}</td>
+
+        <td>{{ item.percentage }}%</td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}
