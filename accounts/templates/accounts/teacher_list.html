@@ -1,0 +1,119 @@
+{% extends 'private_base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between mb-4">
+
+        <h1>
+
+            Teacher List
+
+        </h1>
+
+        <a
+            href="/accounts/add-teacher/"
+            class="btn btn-primary"
+        >
+
+            Add Teacher
+
+        </a>
+
+    </div>
+
+    <div class="card shadow p-4">
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Phone</th>
+
+                    <th>Subject</th>
+
+                    <th>Role</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for teacher in teachers %}
+
+                <tr>
+
+                    <td>
+
+                        {{ teacher.id }}
+
+                    </td>
+
+                    <td>
+
+                        {{ teacher.user.first_name }}
+
+                    </td>
+
+                    <td>
+
+                        {{ teacher.user.email }}
+
+                    </td>
+
+                    <td>
+
+                        {{ teacher.phone }}
+
+                    </td>
+
+                    <td>
+
+                        {{ teacher.subject }}
+
+                    </td>
+
+                    <td>
+
+                        {{ teacher.role }}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="text-center text-danger"
+                    >
+
+                        No Teachers Found
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

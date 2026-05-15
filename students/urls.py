@@ -12,5 +12,18 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete_student, name='delete_student'),
     
     path('view/<int:id>/', views.view_student, name='view_student'),
+     path(
+        'api/students/',views.
+        StudentListCreationAPI.as_view(),
+        name='student_api'
+    ),
+
+    path(
+        'api/students/<int:pk>/',views.
+        StudentRetrieveUpdateDestroyAPI.as_view(),
+        name='student_detail_api'
+    ),
+    #path( "delete/<int:id>/",views.delete_student,name="delete_student"),
+
 
 ]

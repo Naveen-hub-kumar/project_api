@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
 
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>
-        Attendance Dashboard
+
+        Attendance Management System
+
     </title>
+
+    <!-- Bootstrap CSS -->
 
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -12,24 +25,27 @@
     >
 
 </head>
+
 <body>
 
-<!-- Navbar -->
+<!-- NAVBAR -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <div class="container">
+    <div class="container-fluid">
 
-        <!-- Logo -->
+        <!-- LOGO -->
 
-        <a class="navbar-brand"
-           href="/attendance/">
+        <a
+            class="navbar-brand fw-bold"
+            href="/attendance/"
+        >
 
-           Attendance System
+            AMS
 
         </a>
 
-        <!-- Mobile Toggle -->
+        <!-- MOBILE TOGGLE -->
 
         <button
             class="navbar-toggler"
@@ -42,88 +58,230 @@
 
         </button>
 
-        <!-- Navbar Links -->
+        <!-- NAVBAR LINKS -->
 
         <div
             class="collapse navbar-collapse"
             id="navbarNav"
         >
 
-            <ul class="navbar-nav ms-auto">
+            <!-- LEFT MENU -->
 
-                <!-- Dashboard -->
+            <ul class="navbar-nav me-auto">
+
+                <!-- DASHBOARD -->
 
                 <li class="nav-item">
 
-                    <a class="nav-link"
-                       href="/attendance/">
+                    <a
+                        class="nav-link"
+                        href="/attendance/"
+                    >
 
-                       Dashboard
+                        Dashboard
 
                     </a>
 
                 </li>
 
-                <!-- Students -->
+                <!-- STUDENTS -->
+
+                <li class="nav-item dropdown">
+
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                    >
+
+                        Students
+
+                    </a>
+
+                    <ul class="dropdown-menu">
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/students/"
+                            >
+
+                                Student List
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/students/add/"
+                            >
+
+                                Add Student
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <!-- ATTENDANCE -->
 
                 <li class="nav-item">
 
-                    <a class="nav-link"
-                       href="/students/">
+                    <a
+                        class="nav-link"
+                        href="/attendance/list/"
+                    >
 
-                       Students
+                        Attendance
 
                     </a>
 
                 </li>
 
-                <!-- Attendance -->
+                <!-- REPORTS -->
 
-                <li class="nav-item">
+                <li class="nav-item dropdown">
 
-                    <a class="nav-link"
-                       href="/attendance/list/">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                    >
 
-                       Attendance
-
-                    </a>
-
-                </li>
-
-                <!-- Mark Attendance -->
-
-                <li class="nav-item">
-
-                    <a class="nav-link"
-                       href="/attendance/mark/">
-
-                       Mark Attendance
+                        Reports
 
                     </a>
 
+                    <ul class="dropdown-menu">
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/reports/"
+                            >
+
+                                Report Dashboard
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/reports/student-report/"
+                            >
+
+                                Student Report
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/reports/date-range-report/"
+                            >
+
+                                Date Range Report
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
                 </li>
 
-                <!-- Reports -->
+                <!-- TEACHERS -->
 
-                <li class="nav-item">
+                <li class="nav-item dropdown">
 
-                    <a class="nav-link"
-                       href="/reports/">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                    >
 
-                       Reports
+                        Teachers
 
                     </a>
 
+                    <ul class="dropdown-menu">
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/accounts/teachers/"
+                            >
+
+                                Teacher List
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                class="dropdown-item"
+                                href="/accounts/add-teacher/"
+                            >
+
+                                Add Teacher
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
                 </li>
 
-                <!-- Logout -->
+            </ul>
+
+            <!-- RIGHT MENU -->
+
+            <ul class="navbar-nav">
+
+                <!-- USER -->
 
                 <li class="nav-item">
 
-                    <a class="nav-link text-warning"
-                       href="/accounts/logout/">
+                    <span class="nav-link text-warning">
 
-                       Logout
+                        Welcome,
+                        {{ request.user.username }}
+
+                    </span>
+
+                </li>
+
+                <!-- LOGOUT -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link text-danger"
+                        href="/accounts/logout/"
+                    >
+
+                        Logout
 
                     </a>
 
@@ -137,9 +295,9 @@
 
 </nav>
 
-<!-- Main Content -->
+<!-- PAGE CONTENT -->
 
-<div class="container mt-4">
+<div class="container-fluid mt-4">
 
     {% block content %}
 
@@ -149,9 +307,8 @@
 
 <!-- Bootstrap JS -->
 
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

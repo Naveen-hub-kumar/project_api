@@ -2,41 +2,90 @@
 
 {% block content %}
 
-
 <div class="container mt-5">
 
     <div class="card shadow p-4">
 
-        <h1 class="mb-4">Student Details</h1>
+        <h1 class="mb-4">
+
+            Student Details
+
+        </h1>
 
         <table class="table table-bordered">
 
             <tr>
-                <th>Name</th>
-                <td>{{ student.name }}</td>
+
+                <th width="35%">
+
+                    Name
+
+                </th>
+
+                <td>
+
+                    {{ student.name }}
+
+                </td>
+
             </tr>
 
             <tr>
-                <th>Roll Number</th>
-                <td>{{ student.roll_no }}</td>
+
+                <th>
+
+                    Roll Number
+
+                </th>
+
+                <td>
+
+                    {{ student.roll_number }}
+
+                </td>
+
             </tr>
 
             <tr>
-                <th>Email</th>
-                <td>{{ student.email }}</td>
+
+                <th>
+
+                    Email
+
+                </th>
+
+                <td>
+
+                    {{ student.email }}
+
+                </td>
+
             </tr>
 
             <tr>
-                <th>Course</th>
-                <td>{{ student.course }}</td>
+
+                <th>
+
+                    Course
+
+                </th>
+
+                <td>
+
+                    {{ student.course }}
+
+                </td>
+
             </tr>
 
         </table>
 
-        <a href="{% url 'student_list' %}"
-           class="btn btn-secondary">
+        <a
+            href="/students/"
+            class="btn btn-secondary"
+        >
 
-           Back
+            Back
 
         </a>
 
@@ -44,4 +93,4 @@
 
 </div>
 
-{% endblock content %}
+{% endblock %}

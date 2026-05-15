@@ -1,0 +1,172 @@
+{% extends 'private_base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7">
+
+            <div class="card shadow p-4">
+
+                <h1 class="text-center mb-4">
+
+                    Add Teacher
+
+                </h1>
+
+                {% if error %}
+
+                <div class="alert alert-danger">
+
+                    {{ error }}
+
+                </div>
+
+                {% endif %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <!-- NAME -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="name"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- EMAIL -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Email
+
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- PASSWORD -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Password
+
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- PHONE -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Phone
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- SUBJECT -->
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Subject
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="subject"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- ROLE -->
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+
+                            Role
+
+                        </label>
+
+                        <select
+                            name="role"
+                            class="form-select"
+                        >
+
+                            <option value="Teacher">
+
+                                Teacher
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-success w-100"
+                    >
+
+                        Save Teacher
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

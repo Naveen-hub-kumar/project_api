@@ -1,30 +1,30 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Attendance
-from .forms import AttendanceForm
+
+from django.contrib.auth.decorators import login_required
+
 from students.models import Student
 
-# Dashboard
-#@login_required(login_url='login')
+from .models import Attendance
+
+from datetime import datetime
+
+
+# DASHBOARD
+@login_required(login_url='/accounts/login/')
 def dashboard(request):
 
-    # Total Students
     total_students = Student.objects.count()
 
-    # Total Attendance Records
-    total_attendance = Attendance.objects.count()
-
-    # Present Count
     present_count = Attendance.objects.filter(
         status='Present'
     ).count()
 
-    # Absent Count
     absent_count = Attendance.objects.filter(
         status='Absent'
     ).count()
 
-    # Attendance Percentage
+    total_attendance = Attendance.objects.count()
+
     attendance_percentage = 0
 
     if total_attendance > 0:
@@ -33,16 +33,15 @@ def dashboard(request):
             present_count / total_attendance
         ) * 100
 
-    # Context
     context = {
 
         'total_students': total_students,
 
-        'total_attendance': total_attendance,
-
         'present_count': present_count,
 
         'absent_count': absent_count,
+
+        'total_attendance': total_attendance,
 
         'attendance_percentage': round(
             attendance_percentage,
@@ -57,34 +56,103 @@ def dashboard(request):
         context
     )
 
-# Attendance List
+
+# ATTENDANCE LIST
+@login_required(login_url='/accounts/login/')
 def attendance_list(request):
 
-    attendance = Attendance.objects.all()
+    students = Student.objects.all()
+
+    # SELECT DATE
+
+    selected_date = request.GET.get('date')
+
+    if not selected_date:
+
+        selected_date = datetime.today().strftime('%Y-%m-%d')
+
+    attendance_date = datetime.strptime(
+        selected_date,
+        '%Y-%m-%d'
+    ).date()
+
+    # SAVE ATTENDANCE
+
+    if request.method == 'POST':
+
+        selected_date = request.POST.get('date')
+
+        attendance_date = datetime.strptime(
+            selected_date,
+            '%Y-%m-%d'
+        ).date()
+
+        for student in students:
+
+            status = request.POST.get(
+                f'status_{student.id}'
+            )
+
+            # CHECKBOX LOGIC
+
+            if status == 'on':
+
+                status = 'Present'
+
+            else:
+
+                status = 'Absent'
+
+            Attendance.objects.update_or_create(
+
+                student=student,
+
+                date=attendance_date,
+
+                defaults={
+
+                    'status': status
+
+                }
+
+            )
+
+        return redirect(
+            f'/attendance/list/?date={selected_date}'
+        )
+
+    # LOAD ATTENDANCE
+
+    attendance_data = []
+
+    for student in students:
+
+        attendance = Attendance.objects.filter(
+
+            student=student,
+
+            date=attendance_date
+
+        ).first()
+
+        attendance_data.append({
+
+            'student': student,
+
+            'status': attendance.status if attendance else ''
+
+        })
+
+    context = {
+
+        'attendance_data': attendance_data,
+
+        'selected_date': selected_date
+
+    }
 
     return render(
         request,
         'attendance/attendance_list.html',
-        {'attendance': attendance}
-    )
-
-# Mark Attendance
-def mark_attendance(request):
-
-    form = AttendanceForm(
-        request.POST or None
-    )
-
-    if form.is_valid():
-
-        form.save()
-
-        return redirect(
-            'attendance_list'
-        )
-
-    return render(
-        request,
-        'attendance/mark_attendance.html',
-        {'form': form}
+        context
     )
