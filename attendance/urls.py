@@ -17,4 +17,24 @@ urlpatterns = [
         name='attendance_list'
     ),
 
+      path(
+
+        'api/attendance/',views.
+
+        AttendanceListCreateAPI.as_view(),
+
+        name='attendance_api'
+
+    ),
+
+    path(
+
+        'api/attendance/<int:pk>/',views.
+
+        AttendanceRetrieveUpdateDeleteAPI.as_view(),
+
+        name='attendance_detail_api'
+
+    ),
+
 ]
