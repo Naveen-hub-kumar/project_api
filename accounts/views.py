@@ -82,8 +82,8 @@ def logout_view(request):
 
     return redirect('/accounts/login/')
 
-@login_required(login_url='/accounts/login/')
-@admin_required
+# @login_required(login_url='/accounts/login/')
+# @admin_required
 def teacher_list(request):
 
     teachers = Teacher.objects.all()
@@ -101,8 +101,8 @@ def teacher_list(request):
         }
 
     )
-@login_required(login_url='/accounts/login/')
-@admin_required
+# @login_required(login_url='/accounts/login/')
+# @admin_required
 def view_teacher(request, id):
 
     teacher = get_object_or_404(
@@ -124,8 +124,8 @@ def view_teacher(request, id):
 
     )
 
-@login_required(login_url='/accounts/login/')
-@admin_required
+#@login_required(login_url='/accounts/login/')
+#@admin_required
 def add_teacher(request):
 
     if request.method == 'POST':
@@ -258,8 +258,8 @@ def update_teacher(request, id):
     )
 
 
-@login_required(login_url='/accounts/login/')
-@admin_required
+#@login_required(login_url='/accounts/login/')
+#@admin_required
 def view_teacher(request, id):
 
     teacher = get_object_or_404(
@@ -281,8 +281,8 @@ def view_teacher(request, id):
 
     )
 
-@login_required(login_url='/accounts/login/')
-@admin_required
+#@login_required(login_url='/accounts/login/')
+#@admin_required
 def delete_teacher(request, id):
 
     teacher = get_object_or_404(

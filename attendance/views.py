@@ -32,7 +32,7 @@ from students.models import Student
 
 
 # DASHBOARD
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def dashboard(request):
 
     total_students = Student.objects.count()
@@ -80,7 +80,7 @@ def dashboard(request):
 
 
 # ATTENDANCE LIST
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
 def attendance_list(request):
 
     students = Student.objects.all()
